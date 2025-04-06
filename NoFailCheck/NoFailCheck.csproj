@@ -95,8 +95,11 @@
     <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')"/>
     <None Include="NoFailCheck.csproj.user" Condition="Exists('NoFailCheck.csproj.user')"/>
   </ItemGroup>
-  
-  <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "$(BeatSaberDir)\Plugins"</PostBuildEvent>
-  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BeatSaberModdingTools.Tasks" Version="2.0.0-beta7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>

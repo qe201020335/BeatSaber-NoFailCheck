@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- This file contains project properties used by the build. -->
+<Project>
+  <PropertyGroup>
+    <BSMTProjectType>BSIPA</BSMTProjectType>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' != 'Release'">
+    <DisableZipRelease>true</DisableZipRelease>
+  </PropertyGroup>
+  
+</Project>
