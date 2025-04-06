@@ -52,7 +52,7 @@ namespace NoFailCheck
             BSEvents.levelSelected -= BSEvents_levelSelected;
 
             // attach to level selected event if we are enabled, and double presses are required
-            if (Plugin.cfg.Enabled && Plugin.cfg.DoublePress)
+            if (Plugin.Config.Enabled && Plugin.Config.DoublePress)
             {
                 BSEvents.levelSelected += BSEvents_levelSelected;
             }
@@ -90,7 +90,7 @@ namespace NoFailCheck
             IsInSoloFreeplay = menuButton == MainMenuViewController.MenuButton.SoloFreePlay;
             //Plugin.Log.Info($"MainMenuViewController Menu Button Pressed ==> {menuButton.ToString()}");
 
-            if (Plugin.cfg.Enabled)
+            if (Plugin.Config.Enabled)
             {
                 if (IsInSoloFreeplay)
                 {
@@ -130,7 +130,7 @@ namespace NoFailCheck
         {
             if (initialized) return;
 
-            if (Plugin.cfg.Enabled)
+            if (Plugin.Config.Enabled)
             {
                 _gameplayModifiersPanelController = Resources.FindObjectsOfTypeAll<GameplayModifiersPanelController>().First();
                 _gameplayModifierToggles = _gameplayModifiersPanelController.GetComponentsInChildren<GameplayModifierToggle>();
@@ -153,7 +153,7 @@ namespace NoFailCheck
 
         private void SetButtonState(bool state)
         {
-            if (!Plugin.cfg.ChangeText || StandardLevelDetailView == null) return;
+            if (!Plugin.Config.ChangeText || StandardLevelDetailView == null) return;
 
             if (state && IsInSoloFreeplay)
             {

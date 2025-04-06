@@ -8,16 +8,16 @@ namespace NoFailCheck.HarmonyPatches
     {
         static bool Prefix(LevelSelectionNavigationController viewController)
         {
-            if (Plugin.cfg.Enabled && NoFailCheck.IsInSoloFreeplay)
+            if (Plugin.Config.Enabled && NoFailCheck.IsInSoloFreeplay)
             {
                 if (NoFailCheck.NoFailEnabled)
                 {
-                    if (Plugin.cfg.DoublePress && NoFailCheck.NoFailPressCount == 0)
+                    if (Plugin.Config.DoublePress && NoFailCheck.NoFailPressCount == 0)
                     {
                         NoFailCheck.NoFailPressCount++;
                         return false;
                     }
-                    else if (Plugin.cfg.DoublePress && NoFailCheck.NoFailPressCount == 1)
+                    else if (Plugin.Config.DoublePress && NoFailCheck.NoFailPressCount == 1)
                     {
                         NoFailCheck.NoFailPressCount = 0;
                     }

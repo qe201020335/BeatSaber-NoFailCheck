@@ -20,9 +20,9 @@ namespace NoFailCheck.HarmonyPatches
     {
         static bool Prefix(IBeatmapLevelPack pack, IPreviewBeatmapLevel previewBeatmapLevel, bool hidePracticeButton, bool hide360DegreeBeatmapCharacteristic, bool canBuyPack, ref string playButtonText, BeatmapDifficultyMask allowedBeatmapDifficultyMask, BeatmapCharacteristicSO[] notAllowedCharacteristics)
         {
-            if (Plugin.cfg.Enabled && NoFailCheck.IsInSoloFreeplay)
+            if (Plugin.Config.Enabled && NoFailCheck.IsInSoloFreeplay)
             {
-                if (NoFailCheck.NoFailEnabled && Plugin.cfg.ChangeText)
+                if (NoFailCheck.NoFailEnabled && Plugin.Config.ChangeText)
                 {
                     playButtonText = "No Fail!";
                 }

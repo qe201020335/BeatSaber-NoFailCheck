@@ -12,26 +12,23 @@ namespace NoFailCheck
     [Plugin(RuntimeOptions.SingleStartInit)]
     public class Plugin
     {
-        public static SemVer.Version Version => IPA.Loader.PluginManager.GetPlugin("NoFailCheck").Version;
+        private readonly Harmony _harmony = new Harmony("com.nate1280.BeatSaber.NoFailCheck");
 
-        internal static Harmony harmony;
+        public static Logger Log { get; private set; }
 
-        public static Logger Log { get; internal set; }
-
-        internal static Settings cfg;
+        internal static Settings Config {get; private set;}
 
         [Init]
         public void Init(Logger log, Config conf)
         {
             Log = log;
-            cfg = conf.Generated<Settings>();
+            Config = conf.Generated<Settings>();
         }
 
         [OnStart]
         public void OnStart()
         {
-            harmony = new Harmony("com.nate1280.BeatSaber.NoFailCheck");
-            harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
+            _harmony.PatchAll();
 
             BSEvents.OnLoad();
             BSEvents.lateMenuSceneLoadedFresh += lateMenuSceneLoadedFresh;
@@ -49,7 +46,7 @@ namespace NoFailCheck
         [OnExit]
         public void OnExit()
         {
-            harmony.UnpatchSelf();
+            _harmony.UnpatchSelf();
         }
     }
 }

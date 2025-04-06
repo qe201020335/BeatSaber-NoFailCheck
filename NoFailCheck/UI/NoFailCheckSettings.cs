@@ -7,22 +7,22 @@ namespace NoFailCheck.UI
         [UIValue("enabled")]
         public bool Enabled
         {
-            get => Plugin.cfg.Enabled;
-            set => Plugin.cfg.Enabled = value;
+            get => Plugin.Config.Enabled;
+            set => Plugin.Config.Enabled = value;
         }
 
         [UIValue("double-press")]
         public bool DoublePress
         {
-            get => Plugin.cfg.DoublePress;
-            set => Plugin.cfg.DoublePress = value;
+            get => Plugin.Config.DoublePress;
+            set => Plugin.Config.DoublePress = value;
         }
 
         [UIValue("change-text")]
         public bool ChangeText
         {
-            get => Plugin.cfg.ChangeText;
-            set => Plugin.cfg.ChangeText = value;
+            get => Plugin.Config.ChangeText;
+            set => Plugin.Config.ChangeText = value;
         }
     }
 }
