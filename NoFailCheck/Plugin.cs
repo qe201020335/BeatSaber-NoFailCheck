@@ -1,11 +1,11 @@
-﻿using System;
-using IPA;
+﻿using IPA;
 using Logger = IPA.Logging.Logger;
-using System.IO;
 using HarmonyLib;
 using BS_Utils.Utilities;
 using BeatSaberMarkupLanguage.Settings;
+using IPA.Config.Stores;
 using NoFailCheck.UI;
+using Config = IPA.Config.Config;
 
 namespace NoFailCheck
 {
@@ -18,29 +18,20 @@ namespace NoFailCheck
 
         public static Logger Log { get; internal set; }
 
-        public static Settings cfg;
-        public static string DataPath = Path.Combine(Environment.CurrentDirectory, "UserData");
+        internal static Settings cfg;
 
         [Init]
-        public void Init(Logger log)
+        public void Init(Logger log, Config conf)
         {
             Log = log;
+            cfg = conf.Generated<Settings>();
         }
 
         [OnStart]
         public void OnStart()
         {
-            // create userdata path if needed
-            if (!Directory.Exists(DataPath))
-            {
-                Directory.CreateDirectory(DataPath);
-            }
-
             harmony = new Harmony("com.nate1280.BeatSaber.NoFailCheck");
             harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
-
-            // load settings
-            cfg = Settings.Load();
 
             BSEvents.OnLoad();
             BSEvents.lateMenuSceneLoadedFresh += lateMenuSceneLoadedFresh;
